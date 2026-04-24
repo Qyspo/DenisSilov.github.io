@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Simple Website</title>
+    <style>
+        :root {
+            --bg: #f7f9fc;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --accent: #2563eb;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--accent);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 { margin-top: 0; }
+
+        p { color: var(--muted); }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <p>A simple page built with HTML and CSS</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>About</h2>
+            <p>
+                This is a clean starter template. You can edit the text, colors, and layout
+                to make it your own.
+            </p>
+            <a class="btn" href="#">Learn More</a>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 My Website
+    </footer>
+</body>
+</html>
