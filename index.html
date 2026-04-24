@@ -13,7 +13,7 @@
       --text: #ebe5eb;
       --muted: #b594b8;
       --primary: #f63bf3;
-      --primary-hover: #eb25ba;
+      --primary-hover: #8fd6db;
       --border: #371f2e;
       --container: 1100px;
       --radius: 12px;
@@ -35,7 +35,7 @@
     body {
       font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      background: linear-gradient(180deg, #020617, var(--bg));
+      background: linear-gradient(180deg, #160217, var(--bg));
       color: var(--text);
       min-height: 100vh;
     }
@@ -64,7 +64,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(2, 6, 23, 0.85);
+      background: rgba(2, 19, 23, 0.85);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       z-index: 50;
@@ -208,6 +208,7 @@
     .btn:hover {
       background: var(--primary-hover);
       transform: translateY(-1px);
+      color: var(--primary);
     }
 
     .btn-secondary {
@@ -229,7 +230,7 @@
     .hero-placeholder {
       border-radius: var(--radius);
       border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+      background: radial-gradient(circle at top left, #bc1dd8 0, #160217 55%);
       box-shadow: var(--shadow);
       padding: 1.25rem;
       display: flex;
@@ -290,7 +291,7 @@
     }
 
     .card {
-      background: linear-gradient(180deg, #0b1220, var(--surface));
+      background: linear-gradient(180deg, #1a0b20, var(--surface));
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem;
@@ -472,10 +473,14 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
+       
         <div class="hero-text">
+             <img src="Content/MyBeautifulFace.jpg" alt="Denis Silov" />
           <h1 class="hero-title">I design and prototype game experiences in Unity.</h1>
           <p class="hero-subtitle">
-            21‑year‑old game developer .
+            I'm Denis Silov, a student at HOWEST DAE with a passion for
+            games—how they work and how to make them loved by people. 
+            I enjoy exploring new ideas and creating unique types of games. 
           </p>
           <div class="hero-actions">
             <a href="#projects" class="btn">View selected projects</a>
@@ -484,8 +489,8 @@
         </div>
 
         <div class="hero-image">
-          <!-- Replace this with a real image or GIF of your best project -->
-           Content/pFZi55.png
+        <p class="section-label">Most recent project</p>
+        <img src="Content/pFZi55.png" alt="Monster Mines cover" />
           <div class="hero-placeholder">
             <h3>Monster Mines</h3>
             <p>
@@ -719,16 +724,16 @@
 
           <div class="contact-list">
             <div class="contact-item">
-              📧 <a href="mailto:your.email@example.com">your.email@example.com</a>
+               <a href="mailto:your.email@example.com">your.email@example.com</a>
             </div>
             <div class="contact-item">
-              💼 <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+               <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
             <div class="contact-item">
-              🎮 <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
+               <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
             </div>
             <div class="contact-item">
-              💻 <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+               <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
         </div>
