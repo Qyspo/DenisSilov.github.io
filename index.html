@@ -1,90 +1,750 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Simple Website</title>
-    <style>
-        :root {
-            --bg: #f7f9fc;
-            --card: #ffffff;
-            --text: #1f2937;
-            --muted: #6b7280;
-            --accent: #2563eb;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name – Game Designer Portfolio</title>
 
-        * { box-sizing: border-box; }
+  <!-- Base styles -->
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --border: #1f2937;
+      --container: 1100px;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-        header {
-            background: var(--accent);
-            color: #fff;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+    body {
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(180deg, #020617, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        }
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
 
-        h1, h2 { margin-top: 0; }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--primary-hover);
+    }
 
-        p { color: var(--muted); }
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
 
-        .btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.7rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            background: var(--accent);
-            color: #fff;
-            font-weight: bold;
-        }
+    /* Header / nav */
 
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-    </style>
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Sections */
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    section:nth-of-type(odd) {
+      background: radial-gradient(circle at top left, #1f2937 0, transparent 55%);
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 0.5rem;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-top: 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: center;
+    }
+
+    .hero-text {
+      grid-column: span 7;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 34rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .hero-image {
+      grid-column: span 5;
+    }
+
+    .hero-placeholder {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-placeholder h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(15,23,42,0.8);
+    }
+
+    /* Projects */
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .projects-header p {
+      max-width: 28rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .col-4 {
+      grid-column: span 4;
+    }
+    .col-6 {
+      grid-column: span 6;
+    }
+    .col-12 {
+      grid-column: span 12;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #0b1220, var(--surface));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      color: var(--muted);
+    }
+
+    .card-links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .card-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* About & skills */
+
+    .about-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: flex-start;
+    }
+
+    .about-text {
+      grid-column: span 7;
+    }
+
+    .skills-card {
+      grid-column: span 5;
+    }
+
+    .skills-groups {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .skills-group-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .skills-list span {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+    }
+
+    /* Contact */
+
+    .contact-inner {
+      max-width: 34rem;
+    }
+
+    .contact-meta {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-item {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 1.2rem 0 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: repeat(12, 1fr);
+      }
+
+      .hero-text,
+      .hero-image,
+      .about-text,
+      .skills-card {
+        grid-column: span 12;
+      }
+
+      .col-4,
+      .col-6 {
+        grid-column: span 12;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-        <p>A simple page built with HTML and CSS</p>
-    </header>
+  <!-- Header / navigation -->
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <div class="logo">YN</div>
+        <div class="nav-title">Your Name · Game Designer</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section class="card">
-            <h2>About</h2>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="section-label">Portfolio</p>
+          <h1 class="hero-title">I design and prototype game experiences in Unity.</h1>
+          <p class="hero-subtitle">
+            21‑year‑old game developer from Belgium focused on systemic gameplay, moment‑to‑moment feel,
+            and clear UX. Looking for a game design internship.
+          </p>
+
+          <div class="hero-meta">
+            <span>🎮 Core loops · Level design · UX prototypes</span>
+            <span>🛠 Unity (HDRP), C#, Shader Graph, Blender</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn">View selected projects</a>
+            <a href="#contact" class="btn btn-secondary">Download CV</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <!-- Replace this with a real image or GIF of your best project -->
+          <div class="hero-placeholder">
+            <h3>Featured prototype</h3>
             <p>
-                This is a clean starter template. You can edit the text, colors, and layout
-                to make it your own.
+              Short description of your strongest project. For example:
+              “3D Plinko‑style prototype exploring risk–reward and probability.” 
             </p>
-            <a class="btn" href="#">Learn More</a>
-        </section>
-    </main>
+            <div class="tag-row">
+              <span class="tag">Core loop design</span>
+              <span class="tag">Unity HDRP</span>
+              <span class="tag">Solo project</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-        © 2026 My Website
-    </footer>
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="projects-header">
+          <div>
+            <p class="section-label">Selected projects</p>
+            <h2>Playable prototypes & case studies</h2>
+            <p>
+              A small set of focused projects that show how I approach mechanics, pacing, and player feedback.
+              Each one includes my role, design goals, and what I learned.
+            </p>
+          </div>
+          <a href="#" class="btn btn-secondary">View all projects (itch.io)</a>
+        </div>
+
+        <div class="grid">
+          <!-- Project 1 -->
+          <article class="card col-6">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Gravity Plinko (2026)</h3>
+                <div class="card-meta">Game designer & programmer · Solo Unity prototype</div>
+              </div>
+              <div class="card-meta">3–5 minute runs</div>
+            </div>
+
+            <p>
+              A 3D Plinko‑inspired prototype about choosing risk levels and reading probabilities,
+              tuned for “one more run” sessions.
+            </p>
+
+            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
+              <li>Designed the core loop (drop → bounce → reward → spend → repeat).</li>
+              <li>Iterated peg layouts and payout curves to balance fairness vs. excitement.</li>
+              <li>Implemented Unity systems for spawning, scoring, and simple economy feedback.</li>
+            </ul>
+
+            <div class="card-tags">
+              <span class="card-tag">Unity</span>
+              <span class="card-tag">Core loop</span>
+              <span class="card-tag">Systems design</span>
+            </div>
+
+            <div class="card-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">▶ Gameplay video</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">🕹 Play WebGL build</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">📄 Short design notes</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card col-6">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Step Runner (2026)</h3>
+                <div class="card-meta">Game designer · Mobile prototype</div>
+              </div>
+              <div class="card-meta">Daily‑session loop</div>
+            </div>
+
+            <p>
+              A walking‑powered progression system where real‑world steps become in‑game currency
+              for unlocking routes and upgrades.
+            </p>
+
+            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
+              <li>Designed the economy so small daily play still feels rewarding.</li>
+              <li>Explored different sinks and upgrades to avoid runaway inflation.</li>
+              <li>Prototyped basic UI flows for daily rewards and long‑term goals.</li>
+            </ul>
+
+            <div class="card-tags">
+              <span class="card-tag">Economy design</span>
+              <span class="card-tag">Mobile</span>
+              <span class="card-tag">UX flow</span>
+            </div>
+
+            <div class="card-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">▶ Walkthrough video</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">📄 Loop diagram</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card col-6">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">FPS Blockout Lab (2025)</h3>
+                <div class="card-meta">Level design · First person</div>
+              </div>
+              <div class="card-meta">Onboarding focus</div>
+            </div>
+
+            <p>
+              A greybox level focused on readable layouts, difficulty ramp, and teaching mechanics
+              without heavy text tutorials.
+            </p>
+
+            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
+              <li>Blocked out encounter spaces to create combat rhythm and safe learning zones.</li>
+              <li>Iterated spawn timings and sightlines based on small playtests.</li>
+              <li>Used lighting and props to subtly guide player navigation.</li>
+            </ul>
+
+            <div class="card-tags">
+              <span class="card-tag">Level design</span>
+              <span class="card-tag">Greyboxing</span>
+              <span class="card-tag">Playtesting</span>
+            </div>
+
+            <div class="card-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">▶ Level flythrough</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">📄 Design breakdown</a>
+            </div>
+          </article>
+
+          <!-- Project 4 (optional extra slot) -->
+          <article class="card col-6">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Shader Playground (2025)</h3>
+                <div class="card-meta">Technical art · Unity HDRP</div>
+              </div>
+              <div class="card-meta">Visual feedback</div>
+            </div>
+
+            <p>
+              A small environment for testing grass, bushes, and tree shaders to support readable,
+              performant gameplay spaces.
+            </p>
+
+            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
+              <li>Built stylized vegetation shaders that stay performant in HDRP.</li>
+              <li>Explored how motion and color affect player focus and mood.</li>
+              <li>Used the scene to prototype different time‑of‑day moods for the same layout.</li>
+            </ul>
+
+            <div class="card-tags">
+              <span class="card-tag">Shader Graph</span>
+              <span class="card-tag">HDRP</span>
+              <span class="card-tag">Visual design</span>
+            </div>
+
+            <div class="card-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">▶ Demo video</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & skills -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="section-label">About</p>
+          <h2>Hi, I’m Your Name.</h2>
+          <p>
+            I’m a game design student / junior developer based in Belgium who enjoys turning small prototypes
+            into tight, replayable experiences. I care about moment‑to‑moment feel, clear feedback, and
+            giving players interesting choices rather than just bigger numbers.
+          </p>
+          <p>
+            Most of my work is built in Unity (HDRP) with C#, and I often handle both design and basic
+            implementation so I can iterate quickly on ideas. I’m especially interested in systems design,
+            level flow, and UX for moment‑to‑moment gameplay.
+          </p>
+        </div>
+
+        <aside id="skills" class="card skills-card">
+          <div class="skills-groups">
+            <div>
+              <div class="skills-group-title">Design</div>
+              <div class="skills-list">
+                <span>Core loop design</span>
+                <span>Level / blockout</span>
+                <span>Economy systems</span>
+                <span>Onboarding & UX</span>
+              </div>
+            </div>
+            <div>
+              <div class="skills-group-title">Implementation</div>
+              <div class="skills-list">
+                <span>Unity (HDRP)</span>
+                <span>C# scripting</span>
+                <span>Shader Graph (grass/foliage)</span>
+                <span>Basic 3D in Blender</span>
+              </div>
+            </div>
+            <div>
+              <div class="skills-group-title">Collaboration</div>
+              <div class="skills-list">
+                <span>Game jams</span>
+                <span>Version control (Git)</span>
+                <span>Design documentation</span>
+                <span>Playtesting & iteration</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <p class="section-label">Contact</p>
+        <div class="contact-inner">
+          <h2>Let’s talk about an internship.</h2>
+          <p class="contact-meta">
+            I’m available for game design internships (on‑site or remote). If my projects look interesting,
+            feel free to reach out – I’m happy to share builds, more detailed breakdowns, or iterate on a
+            small test task.
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              📧 <a href="mailto:your.email@example.com">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+              💼 <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="contact-item">
+              🎮 <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
+            </div>
+            <div class="contact-item">
+              💻 <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Your Name · Game Design Portfolio
+  </footer>
 </body>
 </html>
