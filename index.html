@@ -35,7 +35,7 @@
     body {
       font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      background: linear-gradient(180deg, #160217, var(--bg));
+      background: linear-gradient(180deg, #2a0f26, var(--bg));
       color: var(--text);
       min-height: 100vh;
     }
@@ -96,9 +96,21 @@
       font-weight: 600;
     }
 
-    .nav-title {
+    /* Brand text in header */
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-name {
       font-size: 0.95rem;
       font-weight: 500;
+    }
+
+    .brand-role {
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
     .nav-links {
@@ -177,14 +189,6 @@
       max-width: 34rem;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
     .hero-actions {
       margin-top: 1.75rem;
       display: flex;
@@ -257,6 +261,39 @@
       font-size: 0.75rem;
       color: var(--muted);
       background: rgba(15,23,42,0.8);
+    }
+
+    /* Thumbnail frame for consistent covers */
+    .thumb-frame {
+      position: relative;
+      border-radius: 12px;
+      border: 2px solid #170414;
+      background: #170414;
+      padding: 4px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      margin-bottom: 0.75rem;
+    }
+
+    .thumb-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .thumb-frame::after {
+      content: "Denis Silov";
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
     }
 
     /* Projects */
@@ -347,6 +384,27 @@
       gap: 0.3rem;
     }
 
+    /* Showreel */
+
+    .reel-card {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .reel-video {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-top: 1rem;
+    }
+
+    .reel-meta {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
     /* About & skills */
 
     .about-grid {
@@ -405,12 +463,33 @@
       flex-wrap: wrap;
       gap: 0.75rem;
       font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     .contact-item {
       border-radius: 999px;
       border: 1px solid var(--border);
       padding: 0.35rem 0.75rem;
+    }
+
+    /* Platform bar */
+
+    .platform-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .platform-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     /* Footer */
@@ -458,7 +537,10 @@
     <div class="container nav">
       <div class="nav-left">
         <div class="logo">DS</div>
-        <div class="nav-title">Denis Silov · Game Designer</div>
+        <div class="brand-text">
+          <div class="brand-name">Denis Silov</div>
+          <div class="brand-role">Game Designer · Unity</div>
+        </div>
       </div>
       <nav class="nav-links">
         <a href="#projects">Projects</a>
@@ -473,14 +555,14 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
-       
         <div class="hero-text">
-             <img src="Content/MyBeautifulFace.jpg" alt="Denis Silov" />
+          <p class="section-label">Portfolio</p>
+          <img src="Content/MyBeautifulFace.jpg" alt="Portrait of Denis Silov" />
           <h1 class="hero-title">I design and prototype game experiences in Unity.</h1>
           <p class="hero-subtitle">
             I'm Denis Silov, a student at HOWEST DAE with a passion for
-            games—how they work and how to make them loved by people. 
-            I enjoy exploring new ideas and creating unique types of games. 
+            games—how they work and how to make them loved by people.
+            I enjoy exploring new ideas and creating unique types of games.
           </p>
           <div class="hero-actions">
             <a href="#projects" class="btn">View selected projects</a>
@@ -489,13 +571,18 @@
         </div>
 
         <div class="hero-image">
-        <p class="section-label">Most recent project</p>
-        <img src="Content/pFZi55.png" alt="Monster Mines cover" />
+          <p class="section-label">Most recent project</p>
+
+          <!-- Consistent thumbnail frame -->
+          <div class="thumb-frame">
+            <img src="Content/pFZi55.png" alt="Monster Mines cover" />
+          </div>
+
           <div class="hero-placeholder">
             <h3>Monster Mines</h3>
             <p>
-              Most reecent game jam project:
-              A horror game inspired by minesweeper about clearing a monster infested bunker. 
+              Most recent game jam project:
+              a horror game inspired by Minesweeper about clearing a monster‑infested bunker.
             </p>
             <div class="tag-row">
               <span class="tag">Core loop design</span>
@@ -504,6 +591,25 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section id="reel">
+      <div class="container reel-card">
+        <p class="section-label">Showreel</p>
+        <h2>Little snippet of my works</h2>
+        <!-- <p>
+          Quick cuts of my favorite prototypes – focused on core loops, level flow, and player feedback.
+          Length ~60–90 seconds.
+        </p> -->
+
+        <div class="reel-video">
+          <!-- Replace VIDEO_ID with your actual YouTube/Vimeo embed ID -->
+        <video width="100%" controls poster="Content/pFZi55.png">
+        <source src="Content/VideoWarNeverEnds.mp4" type="video/mp4">
+
+        <p class="reel-meta">
+          Includes: Monster Mines, Gravity Plinko, Step Runner loop, FPS Blockout Lab, Shader Playground.
+        </p>
       </div>
     </section>
 
@@ -623,7 +729,7 @@
             </div>
           </article>
 
-          <!-- Project 4 (optional extra slot) -->
+          <!-- Project 4 -->
           <article class="card col-6">
             <div class="card-header">
               <div>
@@ -658,19 +764,25 @@
       </div>
     </section>
 
+
     <!-- About & skills -->
     <section id="about">
       <div class="container about-grid">
         <div class="about-text">
           <p class="section-label">About</p>
-          <h2>Hi, I’m Your Name.</h2>
+          <h2>Who am I?</h2>
           <p>
-            I’m a game design student / junior developer based in Belgium who enjoys turning small prototypes
-            into tight, replayable experiences. I care about moment‑to‑moment feel, clear feedback, and
-            giving players interesting choices rather than just bigger numbers.
+            I'm an extroverted guy who enjoys cycling, 
+            trying unconventional things, 
+            and living life to the fullest. 
+            I believe we should live in a way that,
+             at the end of our journey, there are no regrets
+              about the things we wished we had done.
+               My passion is embracing life completely 
+               and being my authentic self with everyone, anywhere.
           </p>
           <p>
-            Most of my work is built in Unity (HDRP) with C#, and I often handle both design and basic
+            Most of my work is built in Unity (HDRP/URP) with C#, and I often handle both design and basic
             implementation so I can iterate quickly on ideas. I’m especially interested in systems design,
             level flow, and UX for moment‑to‑moment gameplay.
           </p>
@@ -679,31 +791,8 @@
         <aside id="skills" class="card skills-card">
           <div class="skills-groups">
             <div>
-              <div class="skills-group-title">Design</div>
-              <div class="skills-list">
-                <span>Core loop design</span>
-                <span>Level / blockout</span>
-                <span>Economy systems</span>
-                <span>Onboarding & UX</span>
-              </div>
-            </div>
-            <div>
-              <div class="skills-group-title">Implementation</div>
-              <div class="skills-list">
-                <span>Unity (HDRP)</span>
-                <span>C# scripting</span>
-                <span>Shader Graph (grass/foliage)</span>
-                <span>Basic 3D in Blender</span>
-              </div>
-            </div>
-            <div>
-              <div class="skills-group-title">Collaboration</div>
-              <div class="skills-list">
-                <span>Game jams</span>
-                <span>Version control (Git)</span>
-                <span>Design documentation</span>
-                <span>Playtesting & iteration</span>
-              </div>
+          
+                
             </div>
           </div>
         </aside>
@@ -724,16 +813,36 @@
 
           <div class="contact-list">
             <div class="contact-item">
-               <a href="mailto:your.email@example.com">your.email@example.com</a>
+              <a href="mailto:your.email@example.com">your.email@example.com</a>
             </div>
             <div class="contact-item">
-               <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
             <div class="contact-item">
-               <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
             </div>
             <div class="contact-item">
-               <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Platform / handle bar -->
+          <div class="platform-bar">
+            <div class="platform-pill">
+              🎨 <a href="https://www.artstation.com/yourhandle"
+                    target="_blank" rel="noopener noreferrer">@yourhandle</a>
+            </div>
+            <div class="platform-pill">
+              💼 <a href="https://www.linkedin.com/in/yourhandle"
+                    target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="platform-pill">
+              🎮 <a href="https://yourname.itch.io"
+                    target="_blank" rel="noopener noreferrer">itch.io</a>
+            </div>
+            <div class="platform-pill">
+              💻 <a href="https://github.com/yourhandle"
+                    target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
         </div>
@@ -742,7 +851,7 @@
   </main>
 
   <footer>
-    © 2026 Your Name · Game Design Portfolio
+    © 2026 Denis Silov · Game Design Portfolio
   </footer>
 </body>
 </html>
