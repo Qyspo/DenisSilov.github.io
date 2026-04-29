@@ -18,6 +18,7 @@
       --container: 1100px;
       --radius: 12px;
       --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      --pink : #f63bf3;
     }
 
     *,
@@ -211,7 +212,7 @@
 
     .btn:hover {
       background: var(--primary-hover);
-      transform: translateY(-1px);
+      transform: translateY(-10px);
       color: var(--primary);
     }
 
@@ -224,7 +225,7 @@
     .btn-secondary:hover {
       border-color: var(--primary);
       color: var(--primary);
-      transform: translateY(-1px);
+      transform: translateY(-10px);
     }
 
     .hero-image {
@@ -273,6 +274,8 @@
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
       margin-bottom: 0.75rem;
+      transition: ease 0.2s;
+      cursor: pointer;
     }
 
     .thumb-frame img {
@@ -281,19 +284,8 @@
       height: auto;
       border-radius: 8px;
     }
-
-    .thumb-frame::after {
-      content: "Denis Silov";
-      position: absolute;
-      right: 8px;
-      bottom: 6px;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--muted);
+    .thumb-frame:hover {
+      transform: translateY(-10px);
     }
 
     /* Projects */
@@ -558,54 +550,53 @@
         <div class="hero-text">
           <p class="section-label">Portfolio</p>
           <img src="Content/MyBeautifulFace.jpg" alt="Portrait of Denis Silov" />
-          <h1 class="hero-title">I design and prototype game experiences in Unity.</h1>
+          <h1 class="hero-title">I <span style="color: var(--pink);">design</span> and <span style="color: var(--pink);">prototype</span> games.</h1>
           <p class="hero-subtitle">
             I'm Denis Silov, a student at HOWEST DAE with a passion for
             games—how they work and how to make them loved by people.
             I enjoy exploring new ideas and creating unique types of games.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn">View selected projects</a>
-            <a href="#contact" class="btn btn-secondary">Download CV</a>
+            <a href="#projects" class="btn">View my projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact me</a>
           </div>
         </div>
 
-        <div class="hero-image">
+        <!-- <div class="hero-image">
           <p class="section-label">Most recent project</p>
 
-          <!-- Consistent thumbnail frame -->
-          <div class="thumb-frame">
-            <img src="Content/pFZi55.png" alt="Monster Mines cover" />
+        
+          <div class="thumb-frame" onclick="location.href='monster-mines.html'">
+            <img src="Content/MonsterMines.png" alt="Monster Mines cover" />
           </div>
 
           <div class="hero-placeholder">
             <h3>Monster Mines</h3>
             <p>
-              Most recent game jam project:
-              a horror game inspired by Minesweeper about clearing a monster‑infested bunker.
+              A horror game inspired by Minesweeper about clearing a monster‑infested bunker.
             </p>
             <div class="tag-row">
               <span class="tag">Core loop design</span>
               <span class="tag">Unity URP</span>
-              <span class="tag">Team project</span>
+              <span class="tag">Game jam · Team</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
+
+    <!-- Showreel -->
     <section id="reel">
       <div class="container reel-card">
         <p class="section-label">Showreel</p>
         <h2>Little snippet of my works</h2>
-        <!-- <p>
-          Quick cuts of my favorite prototypes – focused on core loops, level flow, and player feedback.
-          Length ~60–90 seconds.
-        </p> -->
 
         <div class="reel-video">
-          <!-- Replace VIDEO_ID with your actual YouTube/Vimeo embed ID -->
-        <video width="100%" controls poster="Content/pFZi55.png">
-        <source src="Content/VideoWarNeverEnds.mp4" type="video/mp4">
+          <video width="100%" controls poster="Content/MonsterMines.png">
+            <source src="Content/VideoWarNeverEnds.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
         <p class="reel-meta">
           Includes: Monster Mines, Gravity Plinko, Step Runner loop, FPS Blockout Lab, Shader Playground.
@@ -629,75 +620,67 @@
         </div>
 
         <div class="grid">
-          <!-- Project 1 -->
+          <!-- Project 1: Monster Mines -->
           <article class="card col-6">
+            <div class="thumb-frame" onclick="location.href='monster-mines.html'">
+              <img src="Content/MonsterMines.png" alt="Monster Mines cover" />
+            </div>
             <div class="card-header">
               <div>
-                <h3 class="card-title">Gravity Plinko (2026)</h3>
-                <div class="card-meta">Game designer & programmer · Solo Unity prototype</div>
+                <h3 class="card-title">Monster Mines (2026)</h3>
+                <div class="card-meta">Game designer · Unity URP · Game jam</div>
               </div>
-              <div class="card-meta">3–5 minute runs</div>
+              <!-- <div class="card-meta">Horror · Minesweeper‑inspired</div> -->
             </div>
 
             <p>
-              A 3D Plinko‑inspired prototype about choosing risk levels and reading probabilities,
-              tuned for “one more run” sessions.
+              A horror game inspired by Minesweeper about clearing a monster‑infested bunker, built during a jam.
             </p>
 
-            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
-              <li>Designed the core loop (drop → bounce → reward → spend → repeat).</li>
-              <li>Iterated peg layouts and payout curves to balance fairness vs. excitement.</li>
-              <li>Implemented Unity systems for spawning, scoring, and simple economy feedback.</li>
-            </ul>
-
             <div class="card-tags">
-              <span class="card-tag">Unity</span>
               <span class="card-tag">Core loop</span>
-              <span class="card-tag">Systems design</span>
+              <span class="card-tag">Tension & risk</span>
+              <span class="card-tag">Team project</span>
             </div>
 
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">▶ Gameplay video</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">🕹 Play WebGL build</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">📄 Short design notes</a>
-            </div>
+            <!-- <div class="card-links">
+              <a href="monster-mines.html">🔍 View project page</a>
+            </div> -->
           </article>
 
-          <!-- Project 2 -->
+          <!-- Project 2: Kart -->
           <article class="card col-6">
+            <div class="thumb-frame" onclick="location.href='kart.html'">
+              <img src="Content/Kart.png" alt="Kart render" />
+            </div>
             <div class="card-header">
               <div>
-                <h3 class="card-title">Step Runner (2026)</h3>
-                <div class="card-meta">Game designer · Mobile prototype</div>
+                <h3 class="card-title">Kart (2026)</h3>
+                <div class="card-meta">Modeling · Substance Painter · Unity HDRP</div>
               </div>
-              <div class="card-meta">Daily‑session loop</div>
+              <!-- <div class="card-meta">School assignment</div> -->
             </div>
 
             <p>
-              A walking‑powered progression system where real‑world steps become in‑game currency
-              for unlocking routes and upgrades.
+              A stylized kart created for a modeling class, textured in Substance Painter and presented in Unity HDRP.
             </p>
 
-            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
-              <li>Designed the economy so small daily play still feels rewarding.</li>
-              <li>Explored different sinks and upgrades to avoid runaway inflation.</li>
-              <li>Prototyped basic UI flows for daily rewards and long‑term goals.</li>
-            </ul>
-
             <div class="card-tags">
-              <span class="card-tag">Economy design</span>
-              <span class="card-tag">Mobile</span>
-              <span class="card-tag">UX flow</span>
+              <span class="card-tag">3D modeling</span>
+              <span class="card-tag">Texturing</span>
+              <span class="card-tag">Lighting</span>
             </div>
 
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">▶ Walkthrough video</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">📄 Loop diagram</a>
-            </div>
+            <!-- <div class="card-links">
+              <a href="kart.html">🔍 View project page</a>
+            </div> -->
           </article>
 
-          <!-- Project 3 -->
+          <!-- Project 3: FPS Blockout Lab -->
           <article class="card col-6">
+            <div class="thumb-frame" onclick="location.href='fps-blockout-lab.html'">
+              <img src="Content/FPSBlockoutLab.png" alt="FPS Blockout Lab cover" />
+            </div>
             <div class="card-header">
               <div>
                 <h3 class="card-title">FPS Blockout Lab (2025)</h3>
@@ -711,26 +694,22 @@
               without heavy text tutorials.
             </p>
 
-            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
-              <li>Blocked out encounter spaces to create combat rhythm and safe learning zones.</li>
-              <li>Iterated spawn timings and sightlines based on small playtests.</li>
-              <li>Used lighting and props to subtly guide player navigation.</li>
-            </ul>
-
             <div class="card-tags">
-              <span class="card-tag">Level design</span>
-              <span class="card-tag">Greyboxing</span>
+              <span class="card-tag">Level flow</span>
+              <span class="card-tag">Onboarding</span>
               <span class="card-tag">Playtesting</span>
             </div>
 
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">▶ Level flythrough</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">📄 Design breakdown</a>
-            </div>
+            <!-- <div class="card-links">
+              <a href="fps-blockout-lab.html">🔍 View project page</a>
+            </div> -->
           </article>
 
-          <!-- Project 4 -->
+          <!-- Project 4: Shader Playground -->
           <article class="card col-6">
+            <div class="thumb-frame" onclick="location.href='shader-playground.html'">
+              <img src="Content/ShaderPlayground.png" alt="Shader Playground cover" />
+            </div>
             <div class="card-header">
               <div>
                 <h3 class="card-title">Shader Playground (2025)</h3>
@@ -744,26 +723,19 @@
               performant gameplay spaces.
             </p>
 
-            <ul style="margin:0 0 0.35rem 1.1rem; padding:0; color:var(--muted); font-size:0.9rem;">
-              <li>Built stylized vegetation shaders that stay performant in HDRP.</li>
-              <li>Explored how motion and color affect player focus and mood.</li>
-              <li>Used the scene to prototype different time‑of‑day moods for the same layout.</li>
-            </ul>
-
             <div class="card-tags">
               <span class="card-tag">Shader Graph</span>
-              <span class="card-tag">HDRP</span>
-              <span class="card-tag">Visual design</span>
+              <span class="card-tag">Vegetation</span>
+              <span class="card-tag">Performance</span>
             </div>
 
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">▶ Demo video</a>
-            </div>
+            <!-- <div class="card-links">
+              <a href="shader-playground.html">🔍 View project page</a>
+            </div> -->
           </article>
         </div>
       </div>
     </section>
-
 
     <!-- About & skills -->
     <section id="about">
@@ -772,29 +744,41 @@
           <p class="section-label">About</p>
           <h2>Who am I?</h2>
           <p>
-            I'm an extroverted guy who enjoys cycling, 
-            trying unconventional things, 
-            and living life to the fullest. 
+            I'm an extroverted guy who enjoys cycling,
+            trying unconventional things,
+            and living life to the fullest.
             I believe we should live in a way that,
-             at the end of our journey, there are no regrets
-              about the things we wished we had done.
-               My passion is embracing life completely 
-               and being my authentic self with everyone, anywhere.
+            at the end of our journey, there are no regrets
+            about the things we wished we had done.
+            My passion is embracing life completely
+            and being my authentic self with everyone, anywhere.
           </p>
           <p>
             Most of my work is built in Unity (HDRP/URP) with C#, and I often handle both design and basic
             implementation so I can iterate quickly on ideas. I’m especially interested in systems design,
             level flow, and UX for moment‑to‑moment gameplay.
           </p>
+
+          <div class="skills-groups">
+            <p class="skills-group-title">Skills</p>
+            <div class="skills-list">
+              <span>Core loops</span>
+              <span>Unordinary thinking</span>
+              <span>Systems design</span>
+              <span>Ideas development</span>
+            </div>
+            <p class="skills-group-title">Development</p>
+            <div class="skills-list">
+              <span>C#</span>
+              <span>Unity</span>
+              <span>Substance Painter</span>
+              <span>Photoshop</span>
+            </div>
+          </div>
         </div>
 
         <aside id="skills" class="card skills-card">
-          <div class="skills-groups">
-            <div>
-          
-                
-            </div>
-          </div>
+          <img src="Content/SunnyMe.jpg" alt="Sunny portrait of Denis" />
         </aside>
       </div>
     </section>
@@ -810,21 +794,6 @@
             feel free to reach out – I’m happy to share builds, more detailed breakdowns, or iterate on a
             small test task.
           </p>
-
-          <div class="contact-list">
-            <div class="contact-item">
-              <a href="mailto:your.email@example.com">your.email@example.com</a>
-            </div>
-            <div class="contact-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-            <div class="contact-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">itch.io</a>
-            </div>
-            <div class="contact-item">
-              <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-          </div>
 
           <!-- Platform / handle bar -->
           <div class="platform-bar">
@@ -843,6 +812,10 @@
             <div class="platform-pill">
               💻 <a href="https://github.com/yourhandle"
                     target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="platform-pill">
+              <a href="https://drive.google.com/uc?export=download&id=1EpOQsWBAXpa-mvHwwE9I8Mz8RlK03N2x"
+                 target="_blank" rel="noopener noreferrer">Download CV</a>
             </div>
           </div>
         </div>
