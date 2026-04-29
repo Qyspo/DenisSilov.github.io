@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Denis Silov – Game Designer Portfolio</title>
+  <title>DENIS – CHAOS PORTFOLIO</title>
 
-  <!-- Base styles -->
+  <!-- MAXIMUM CHAOS STYLES -->
   <style>
     :root {
       --bg: #2a0f26;
       --surface: #271124;
-      --text: #ebe5eb;
-      --muted: #b594b8;
-      --primary: #f63bf3;
+      --text: #ffeefc;
+      --muted: #ffd7ff;
+      --primary: #ff4df3;
       --primary-hover: #8fd6db;
-      --border: #371f2e;
+      --border: #ff9af8;
       --container: 1100px;
       --radius: 12px;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-      --pink : #f63bf3;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      --pink: #ff4df3;
+      --yellow: #ffe94d;
+      --lime: #9dff6e;
+      --cyan: #5af4ff;
+      --danger: #ff4d6a;
     }
 
     *,
@@ -36,9 +40,22 @@
     body {
       font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      background: linear-gradient(180deg, #2a0f26, var(--bg));
       color: var(--text);
       min-height: 100vh;
+      background:
+        radial-gradient(circle at 0% 0%, #30142e 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, #494315 0, transparent 55%),
+        radial-gradient(circle at 0% 100%, #165256 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #355825 0, transparent 55%),
+        repeating-linear-gradient(
+          135deg,
+          #140612 0,
+          #140612 16px,
+          #1b0820 16px,
+          #1b0820 32px
+        );
+      background-size: 200% 200%;
+      animation: bg-chaos 120s linear infinite;
     }
 
     img {
@@ -48,7 +65,7 @@
     }
 
     a {
-      color: var(--primary);
+      color: var(--yellow);
       text-decoration: none;
     }
     a:hover {
@@ -60,14 +77,98 @@
       margin-inline: auto;
     }
 
+    /* ANIMATIONS */
+
+    @keyframes bg-chaos {
+      0% { background-position: 0% 0%; }
+      25% { background-position: 100% 0%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(-3deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-1deg); }
+      75% { transform: rotate(3deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 243, 0.5); }
+      50% { box-shadow: 0 0 40px 6px rgba(255, 233, 77, 0.95); }
+    }
+
+    @keyframes rainbow-text {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes sticker-bob {
+      0%,100% { transform: translateY(0) rotate(-6deg); }
+      50% { transform: translateY(-6px) rotate(-12deg); }
+    }
+
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes tag-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* TICKER */
+
+    .ticker-wrapper {
+      overflow: hidden;
+      background: #140612;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .ticker {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee-scroll 18s linear infinite;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0;
+      color: #140612;
+    }
+
+    .ticker span {
+      background: repeating-linear-gradient(
+        -45deg,
+        #ff4df3 0,
+        #ff4df3 10px,
+        #ffe94d 10px,
+        #ffe94d 20px,
+        #5af4ff 20px,
+        #5af4ff 30px
+      );
+      padding: 0.15rem 1.5rem;
+      margin-right: 2rem;
+      border-radius: 999px;
+    }
+
     /* Header / nav */
 
     header {
       position: sticky;
       top: 0;
-      background: rgba(2, 19, 23, 0.85);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(10, 3, 18, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px dashed var(--yellow);
       z-index: 50;
     }
 
@@ -76,7 +177,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.9rem 0;
+      padding: 0.7rem 0;
     }
 
     .nav-left {
@@ -86,27 +187,30 @@
     }
 
     .logo {
-      width: 32px;
-      height: 32px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
-      border: 2px solid var(--primary);
+      border: 3px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--yellow);
+      background: radial-gradient(circle at 30% 20%, #ff4df3, #350020);
+      animation: pulse-border 2.2s infinite;
     }
 
-    /* Brand text in header */
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 0.1rem;
+      gap: 0.05rem;
     }
 
     .brand-name {
-      font-size: 0.95rem;
-      font-weight: 500;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
     }
 
     .brand-role {
@@ -116,17 +220,24 @@
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .nav-links a {
       color: var(--muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(20, 6, 18, 0.6);
     }
 
     .nav-links a:hover {
-      color: var(--primary);
+      color: var(--yellow);
+      border-color: var(--primary);
+      background: rgba(255, 77, 243, 0.2);
+      animation: wiggle 0.35s ease-in-out;
     }
 
     /* Sections */
@@ -136,16 +247,13 @@
     }
 
     section {
-      padding: 4rem 0;
-    }
-
-    section:nth-of-type(odd) {
-      background: radial-gradient(circle at top left, #1f2937 0, transparent 55%);
+      padding: 3.5rem 0;
+      position: relative;
     }
 
     h1, h2, h3 {
       margin: 0 0 0.5rem;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     p {
@@ -154,44 +262,87 @@
     }
 
     .section-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
+      letter-spacing: 0.18em;
+      color: var(--yellow);
       margin-bottom: 0.75rem;
     }
 
     /* Hero */
 
     .hero {
-      padding-top: 3.5rem;
+      padding-top: 3rem;
+      background:
+        radial-gradient(circle at top, rgba(255, 233, 77, 0.16), transparent 65%),
+        radial-gradient(circle at bottom, rgba(255, 77, 243, 0.22), transparent 60%);
     }
 
     .hero-grid {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(12, 1fr);
-      align-items: center;
+      max-width: 720px;
+      margin-inline: auto;
+      position: relative;
     }
 
     .hero-text {
-      grid-column: span 7;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-face {
+      max-width: 220px;
+      border-radius: 999px;
+      border: 3px solid var(--yellow);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      margin-bottom: 1.5rem;
+      animation: floaty 2.8s ease-in-out infinite;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
-      margin-bottom: 0.75rem;
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, var(--pink), var(--yellow), var(--lime), var(--cyan));
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: rainbow-text 4.5s linear infinite;
     }
 
     .hero-subtitle {
       font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      max-width: 34rem;
+      margin-bottom: 0.9rem;
+      max-width: 40rem;
+    }
+
+    .hero-note {
+      font-size: 0.85rem;
+      color: var(--yellow);
+      font-style: italic;
+    }
+
+    .hero-sticker {
+      position: absolute;
+      right: -10px;
+      top: 10px;
+      background: var(--danger);
+      color: #140612;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transform: rotate(-12deg);
+      box-shadow: 0 5px 0 #140612;
+      animation: sticker-bob 2.6s ease-in-out infinite;
     }
 
     .hero-actions {
-      margin-top: 1.75rem;
+      margin-top: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
@@ -200,71 +351,40 @@
     .btn {
       display: inline-block;
       background: var(--primary);
-      color: #fff;
+      color: #140612;
       padding: 0.65rem 1rem;
-      border-radius: 10px;
+      border-radius: 999px;
       border: 0;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.15s ease;
       font-size: 0.95rem;
-      font-weight: 500;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 6px 0 #140612;
     }
 
     .btn:hover {
       background: var(--primary-hover);
-      transform: translateY(-10px);
-      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 #140612;
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
+      color: var(--yellow);
+      border: 2px dashed var(--yellow);
+      box-shadow: none;
     }
 
     .btn-secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-10px);
+      border-style: solid;
+      color: var(--primary-hover);
+      transform: translateY(-3px) rotate(-1deg);
     }
 
-    .hero-image {
-      grid-column: span 5;
-    }
+    /* Thumbnail frame */
 
-    .hero-placeholder {
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, #bc1dd8 0, #160217 55%);
-      box-shadow: var(--shadow);
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.85rem;
-    }
-
-    .hero-placeholder h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .tag {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.55rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: rgba(15,23,42,0.8);
-    }
-
-    /* Thumbnail frame for consistent covers */
     .thumb-frame {
       position: relative;
       border-radius: 12px;
@@ -272,7 +392,7 @@
       background: #170414;
       padding: 4px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      box-shadow: var(--shadow);
       margin-bottom: 0.75rem;
       transition: ease 0.2s;
       cursor: pointer;
@@ -284,8 +404,36 @@
       height: auto;
       border-radius: 8px;
     }
+
     .thumb-frame:hover {
-      transform: translateY(-10px);
+      transform: translateY(-6px) rotate(-1deg);
+    }
+
+    /* Tags */
+
+    .tag-row,
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag,
+    .card-tag {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(20, 6, 18, 0.9);
+      animation: tag-pop 2.4s ease-in-out infinite;
+    }
+
+    .card-tag:nth-child(2n) {
+      animation-delay: 0.4s;
+    }
+    .card-tag:nth-child(3n) {
+      animation-delay: 0.8s;
     }
 
     /* Projects */
@@ -309,25 +457,37 @@
       grid-template-columns: repeat(12, 1fr);
     }
 
-    .col-4 {
-      grid-column: span 4;
-    }
     .col-6 {
       grid-column: span 6;
     }
-    .col-12 {
-      grid-column: span 12;
-    }
 
     .card {
-      background: linear-gradient(180deg, #1a0b20, var(--surface));
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2c0f29, var(--surface));
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "CLICK ME";
+      position: absolute;
+      top: 8px;
+      right: -40px;
+      background: var(--yellow);
+      color: #140612;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.15rem 1.5rem;
+      transform: rotate(22deg);
+      box-shadow: 0 4px 0 rgba(0,0,0,0.4);
     }
 
     .card-header {
@@ -339,61 +499,11 @@
 
     .card-title {
       font-size: 1.05rem;
-      font-weight: 500;
+      font-weight: 800;
     }
 
     .card-meta {
       font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.5rem;
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.55rem;
-      color: var(--muted);
-    }
-
-    .card-links {
-      margin-top: 0.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.85rem;
-    }
-
-    .card-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    /* Showreel */
-
-    .reel-card {
-      max-width: 720px;
-      margin-inline: auto;
-    }
-
-    .reel-video {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      margin-top: 1rem;
-    }
-
-    .reel-meta {
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
       color: var(--muted);
     }
 
@@ -423,7 +533,7 @@
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--muted);
+      color: var(--yellow);
     }
 
     .skills-list {
@@ -437,6 +547,9 @@
       border-radius: 999px;
       border: 1px solid var(--border);
       padding: 0.2rem 0.55rem;
+      background: rgba(20, 6, 18, 0.9);
+      color: var(--muted);
+      animation: tag-pop 2.2s ease-in-out infinite;
     }
 
     /* Contact */
@@ -449,22 +562,6 @@
       font-size: 0.9rem;
       margin-bottom: 1rem;
     }
-
-    .contact-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact-item {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.75rem;
-    }
-
-    /* Platform bar */
 
     .platform-bar {
       display: flex;
@@ -487,11 +584,11 @@
     /* Footer */
 
     footer {
-      border-top: 1px solid var(--border);
+      border-top: 2px dashed var(--yellow);
       color: var(--muted);
       padding: 1.2rem 0 2rem;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 800px) {
@@ -500,19 +597,15 @@
         align-items: flex-start;
       }
 
-      .hero-grid,
       .about-grid {
         grid-template-columns: repeat(12, 1fr);
       }
 
-      .hero-text,
-      .hero-image,
       .about-text,
       .skills-card {
         grid-column: span 12;
       }
 
-      .col-4,
       .col-6 {
         grid-column: span 12;
       }
@@ -521,9 +614,26 @@
         padding: 3rem 0;
       }
     }
+
+    /* Accessibility: disable chaos for reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- CHAOS TICKER -->
+  <div class="ticker-wrapper">
+    <div class="ticker">
+      <span>WARNING: EXPERIMENTAL GAMES AHEAD</span>
+      <span>CAUTION: MAY CAUSE “ONE MORE RUN” BEHAVIOUR</span>
+      <span>FUN FACT: DEV SURVIVES ON JAM DEADLINES AND COFFEE</span>
+    </div>
+  </div>
+
   <!-- Header / navigation -->
   <header>
     <div class="container nav">
@@ -531,7 +641,7 @@
         <div class="logo">DS</div>
         <div class="brand-text">
           <div class="brand-name">Denis Silov</div>
-          <div class="brand-role">Game Designer · Unity</div>
+          <div class="brand-role">Game Designer · Chaos Enthusiast</div>
         </div>
       </div>
       <nav class="nav-links">
@@ -548,59 +658,28 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-text">
-          <p class="section-label">Portfolio</p>
-          <img src="Content/MyBeautifulFace.jpg" alt="Portrait of Denis Silov" />
-          <h1 class="hero-title">I <span style="color: var(--pink);">design</span> and <span style="color: var(--pink);">prototype</span> games.</h1>
+          <div class="hero-sticker">UNPAID INTERN OF CHAOS</div>
+          <p class="section-label">Portfolio of controlled disasters</p>
+          <img class="hero-face" src="Content/MyBeautifulFace.jpg"
+               alt="Portrait of Denis Silov, suspiciously happy about game design" />
+          <h1 class="hero-title">
+            I <span>design</span> and <span>prototype</span> silly little games
+            (that sometimes slap).
+          </h1>
           <p class="hero-subtitle">
-            I'm Denis Silov, a student at HOWEST DAE with a passion for
-            games—how they work and how to make them loved by people.
-            I enjoy exploring new ideas and creating unique types of games.
+            I’m Denis, a HOWEST DAE student who pokes at game systems until they either break
+            or become fun. I like cursed jams, strange core loops, and turning “what if we…”
+            into something your friends yell at.
+          </p>
+          <p class="hero-note">
+            Side effects include: shouting at Minesweeper tiles, suddenly caring about shader grass,
+            and “I swear this is the last run”.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn">View my projects</a>
-            <a href="#contact" class="btn btn-secondary">Contact me</a>
+            <a href="#projects" class="btn">Show me the chaos</a>
+            <a href="#contact" class="btn btn-secondary">Recruit this goblin</a>
           </div>
         </div>
-
-        <!-- <div class="hero-image">
-          <p class="section-label">Most recent project</p>
-
-        
-          <div class="thumb-frame" onclick="location.href='monster-mines.html'">
-            <img src="Content/MonsterMines.png" alt="Monster Mines cover" />
-          </div>
-
-          <div class="hero-placeholder">
-            <h3>Monster Mines</h3>
-            <p>
-              A horror game inspired by Minesweeper about clearing a monster‑infested bunker.
-            </p>
-            <div class="tag-row">
-              <span class="tag">Core loop design</span>
-              <span class="tag">Unity URP</span>
-              <span class="tag">Game jam · Team</span>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </section>
-
-    <!-- Showreel -->
-    <section id="reel">
-      <div class="container reel-card">
-        <p class="section-label">Showreel</p>
-        <h2>Little snippet of my works</h2>
-
-        <div class="reel-video">
-          <video width="100%" controls poster="Content/MonsterMines.png">
-            <source src="Content/VideoWarNeverEnds.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <p class="reel-meta">
-          Includes: Monster Mines, Gravity Plinko, Step Runner loop, FPS Blockout Lab, Shader Playground.
-        </p>
       </div>
     </section>
 
@@ -609,20 +688,21 @@
       <div class="container">
         <div class="projects-header">
           <div>
-            <p class="section-label">Selected projects</p>
-            <h2>Playable prototypes & case studies</h2>
+            <p class="section-label">Selected experiments</p>
+            <h2>Playable chaos & case studies</h2>
             <p>
-              A small set of focused projects that show how I approach mechanics, pacing, and player feedback.
-              Each one includes my role, design goals, and what I learned.
+              Four survivors of prototype hell: horror Minesweeper, shiny kart,
+              a cube‑infested FPS lab, and a field where the grass wiggles too much.
+              Click a card to see what went horribly right.
             </p>
           </div>
-          <a href="#" class="btn btn-secondary">View all projects (itch.io)</a>
+          <a href="#" class="btn btn-secondary">See everything on itch.io</a>
         </div>
 
         <div class="grid">
-          <!-- Project 1: Monster Mines -->
-          <article class="card col-6">
-            <div class="thumb-frame" onclick="location.href='monster-mines.html'">
+          <!-- Monster Mines -->
+          <article class="card col-6" onclick="location.href='monster-mines.html'">
+            <div class="thumb-frame">
               <img src="Content/MonsterMines.png" alt="Monster Mines cover" />
             </div>
             <div class="card-header">
@@ -630,27 +710,21 @@
                 <h3 class="card-title">Monster Mines (2026)</h3>
                 <div class="card-meta">Game designer · Unity URP · Game jam</div>
               </div>
-              <!-- <div class="card-meta">Horror · Minesweeper‑inspired</div> -->
             </div>
-
             <p>
-              A horror game inspired by Minesweeper about clearing a monster‑infested bunker, built during a jam.
+              Minesweeper but everything wants you dead. Short, nasty bunker runs where
+              “this tile is definitely safe” is famous last words.
             </p>
-
             <div class="card-tags">
-              <span class="card-tag">Core loop</span>
+              <span class="card-tag">Core loop design</span>
               <span class="card-tag">Tension & risk</span>
-              <span class="card-tag">Team project</span>
+              <span class="card-tag">Jam chaos</span>
             </div>
-
-            <!-- <div class="card-links">
-              <a href="monster-mines.html">🔍 View project page</a>
-            </div> -->
           </article>
 
-          <!-- Project 2: Kart -->
-          <article class="card col-6">
-            <div class="thumb-frame" onclick="location.href='kart.html'">
+          <!-- Kart -->
+          <article class="card col-6" onclick="location.href='kart.html'">
+            <div class="thumb-frame">
               <img src="Content/Kart.png" alt="Kart render" />
             </div>
             <div class="card-header">
@@ -658,27 +732,21 @@
                 <h3 class="card-title">Kart (2026)</h3>
                 <div class="card-meta">Modeling · Substance Painter · Unity HDRP</div>
               </div>
-              <!-- <div class="card-meta">School assignment</div> -->
             </div>
-
             <p>
-              A stylized kart created for a modeling class, textured in Substance Painter and presented in Unity HDRP.
+              A racing kart built for class but treated like a boss fight:
+              modeled, textured, lit, and tuned to look good from the worst possible camera angles.
             </p>
-
             <div class="card-tags">
               <span class="card-tag">3D modeling</span>
-              <span class="card-tag">Texturing</span>
-              <span class="card-tag">Lighting</span>
+              <span class="card-tag">Stylized PBR</span>
+              <span class="card-tag">Shiny nonsense</span>
             </div>
-
-            <!-- <div class="card-links">
-              <a href="kart.html">🔍 View project page</a>
-            </div> -->
           </article>
 
-          <!-- Project 3: FPS Blockout Lab -->
-          <article class="card col-6">
-            <div class="thumb-frame" onclick="location.href='fps-blockout-lab.html'">
+          <!-- FPS Blockout Lab -->
+          <article class="card col-6" onclick="location.href='fps-blockout-lab.html'">
+            <div class="thumb-frame">
               <img src="Content/FPSBlockoutLab.png" alt="FPS Blockout Lab cover" />
             </div>
             <div class="card-header">
@@ -688,26 +756,20 @@
               </div>
               <div class="card-meta">Onboarding focus</div>
             </div>
-
             <p>
-              A greybox level focused on readable layouts, difficulty ramp, and teaching mechanics
-              without heavy text tutorials.
+              A greybox playground where cubes teach you how to play.
+              Zero text walls, just layout, pacing, and “ohhh, that’s what this room is for”.
             </p>
-
             <div class="card-tags">
               <span class="card-tag">Level flow</span>
               <span class="card-tag">Onboarding</span>
-              <span class="card-tag">Playtesting</span>
+              <span class="card-tag">Playtesting scars</span>
             </div>
-
-            <!-- <div class="card-links">
-              <a href="fps-blockout-lab.html">🔍 View project page</a>
-            </div> -->
           </article>
 
-          <!-- Project 4: Shader Playground -->
-          <article class="card col-6">
-            <div class="thumb-frame" onclick="location.href='shader-playground.html'">
+          <!-- Shader Playground -->
+          <article class="card col-6" onclick="location.href='shader-playground.html'">
+            <div class="thumb-frame">
               <img src="Content/ShaderPlayground.png" alt="Shader Playground cover" />
             </div>
             <div class="card-header">
@@ -717,21 +779,15 @@
               </div>
               <div class="card-meta">Visual feedback</div>
             </div>
-
             <p>
-              A small environment for testing grass, bushes, and tree shaders to support readable,
-              performant gameplay spaces.
+              A small field built to bully Shader Graph. Grass, bushes, and trees that wiggle, glow,
+              and somehow still run at decent framerates. Mostly.
             </p>
-
             <div class="card-tags">
               <span class="card-tag">Shader Graph</span>
               <span class="card-tag">Vegetation</span>
-              <span class="card-tag">Performance</span>
+              <span class="card-tag">Performance (ish)</span>
             </div>
-
-            <!-- <div class="card-links">
-              <a href="shader-playground.html">🔍 View project page</a>
-            </div> -->
           </article>
         </div>
       </div>
@@ -742,43 +798,38 @@
       <div class="container about-grid">
         <div class="about-text">
           <p class="section-label">About</p>
-          <h2>Who am I?</h2>
+          <h2>Who is causing all this?</h2>
           <p>
-            I'm an extroverted guy who enjoys cycling,
-            trying unconventional things,
-            and living life to the fullest.
-            I believe we should live in a way that,
-            at the end of our journey, there are no regrets
-            about the things we wished we had done.
-            My passion is embracing life completely
-            and being my authentic self with everyone, anywhere.
+            I’m an extroverted goblin who likes cycling, slightly unhinged ideas,
+            and pressing “build” at 3 AM. I’d rather ship a weird prototype than keep
+            a “perfect” idea trapped in a Google Doc.
           </p>
           <p>
-            Most of my work is built in Unity (HDRP/URP) with C#, and I often handle both design and basic
-            implementation so I can iterate quickly on ideas. I’m especially interested in systems design,
-            level flow, and UX for moment‑to‑moment gameplay.
+            Most days I live in Unity (HDRP/URP) and C#, bouncing between design and implementation
+            so I can break things fast and fix them slightly slower. I love core loops,
+            systems that talk to each other, and giving players decisions that feel risky but fair.
           </p>
 
-          <div class="skills-groups">
-            <p class="skills-group-title">Skills</p>
+          <div class="skills-groups" id="skills">
+            <p class="skills-group-title">Chaos powers</p>
             <div class="skills-list">
-              <span>Core loops</span>
-              <span>Unordinary thinking</span>
-              <span>Systems design</span>
-              <span>Ideas development</span>
+              <span>Core loop wizardry</span>
+              <span>Weird idea generator</span>
+              <span>Systems tinkering</span>
+              <span>“Is this fun yet?” iterations</span>
             </div>
-            <p class="skills-group-title">Development</p>
+            <p class="skills-group-title">Buttons I actually know</p>
             <div class="skills-list">
+              <span>Unity (HDRP / URP)</span>
               <span>C#</span>
-              <span>Unity</span>
               <span>Substance Painter</span>
               <span>Photoshop</span>
             </div>
           </div>
         </div>
 
-        <aside id="skills" class="card skills-card">
-          <img src="Content/SunnyMe.jpg" alt="Sunny portrait of Denis" />
+        <aside class="skills-card">
+          <img src="Content/SunnyMe.jpg" alt="Denis outside, pretending to touch grass instead of shaders" />
         </aside>
       </div>
     </section>
@@ -788,14 +839,12 @@
       <div class="container">
         <p class="section-label">Contact</p>
         <div class="contact-inner">
-          <h2>Let’s talk about an internship.</h2>
+          <h2>Summon me for an internship.</h2>
           <p class="contact-meta">
-            I’m available for game design internships (on‑site or remote). If my projects look interesting,
-            feel free to reach out – I’m happy to share builds, more detailed breakdowns, or iterate on a
-            small test task.
+            Looking for someone to obsess over your core loop, block out levels, or prototype
+            the idea nobody else wants to risk? That’s my favourite part.
           </p>
 
-          <!-- Platform / handle bar -->
           <div class="platform-bar">
             <div class="platform-pill">
               🎨 <a href="https://www.artstation.com/yourhandle"
@@ -814,8 +863,8 @@
                     target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
             <div class="platform-pill">
-              <a href="https://drive.google.com/uc?export=download&id=1EpOQsWBAXpa-mvHwwE9I8Mz8RlK03N2x"
-                 target="_blank" rel="noopener noreferrer">Download CV</a>
+              📄 <a href="https://drive.google.com/uc?export=download&id=1EpOQsWBAXpa-mvHwwE9I8Mz8RlK03N2x"
+                    target="_blank" rel="noopener noreferrer">Download CV</a>
             </div>
           </div>
         </div>
@@ -824,7 +873,7 @@
   </main>
 
   <footer>
-    © 2026 Denis Silov · Game Design Portfolio
+    © 2026 Denis Silov · Game Design Portfolio · 0% corporate, 100% chaos
   </footer>
 </body>
 </html>
