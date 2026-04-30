@@ -199,6 +199,13 @@
       color: var(--yellow);
       background: radial-gradient(circle at 30% 20%, #ff4df3, #350020);
       animation: pulse-border 2.2s infinite;
+      cursor: pointer;
+       transition: 0.15s ease;
+    }
+    .logo:hover {
+        transform: translateY(-3px);
+      box-shadow: 0 0 40px 6px rgba(255, 233, 77, 0.95);
+
     }
 
     .brand-text {
@@ -322,7 +329,7 @@
 
     .hero-note {
       font-size: 0.85rem;
-      color: var(--yellow);
+      color: rgba(255, 255, 145, 0.9);
       font-style: italic;
     }
 
@@ -387,27 +394,29 @@
   transform: translateY(-3px) rotate(-1deg);
 }
 
-    /* Thumbnail frame */
+    /* Thumbnail frame: same ratio for every card */
+.thumb-frame {
+  position: relative;
+  border-radius: 12px;
+  border: 2px solid #170414;
+  background: #170414;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 0.75rem;
+  transition: ease 0.2s;
+  cursor: pointer;
 
-    .thumb-frame {
-      position: relative;
-      border-radius: 12px;
-      border: 2px solid #170414;
-      background: #170414;
-      padding: 4px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-bottom: 0.75rem;
-      transition: ease 0.2s;
-      cursor: pointer;
-    }
+  /* NEW: fixed ratio for all covers (pick one) */
+  aspect-ratio: 4 / 3;      /* or 4 / 3, or 1 / 1 for squares */
+}
 
-    .thumb-frame img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
+/* Image fills the frame and is cropped nicely */
+.thumb-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* keeps aspect, crops overflow */
+  border-radius: 8px;
+}
 
     .thumb-frame:hover {
       transform: translateY(-6px) rotate(-1deg);
@@ -482,8 +491,8 @@
     .card::before {
       content: "CLICK ME";
       position: absolute;
-      top: 8px;
-      right: -40px;
+      top: 4px;
+      right: -20px;
       background: var(--yellow);
       color: #140612;
       font-size: 0.6rem;
@@ -648,7 +657,7 @@
   <header>
     <div class="container nav">
       <div class="nav-left">
-        <div class="logo">DS</div>
+        <a href="" class="logo">DS</a>
         <div class="brand-text">
           <div class="brand-name">Denis Silov</div>
           <div class="brand-role">Game Designer · Chaos Enthusiast</div>
@@ -668,7 +677,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-text">
-          <div class="hero-sticker">Currently jobless </div>
+          <div class="hero-sticker">Looking for a job </div>
           <!-- <p class="section-label">Portfolio of a very lawless game designer</p> -->
           <img class="hero-face" src="Content/MyBeautifulFace.jpg"
                alt="Picture of Denis Silov" />
@@ -678,12 +687,11 @@
           </h1>
           <p class="hero-subtitle">
             I’m Denis, a HOWEST DAE student who pokes at game systems until they either break
-            or become fun. I like cursed jams, strange core loops, and turning “what if we…”
-            into something your friends yell at.
+            or become fun. I have a soft spot for core loops that make players say “Just one more”.
           </p>
           <p class="hero-note">
-            Side effects include: shouting at Minesweeper tiles, suddenly caring about shader grass,
-            and “I swear this is the last run”.
+            Side effects : shouting at monsters in mines, suddenly caring about hotdog kart,
+            and trying to beat this damn final level.
           </p>
           <div class="hero-actions">
             <a href="#projects" class="btn">Show me the chaos</a>
@@ -700,16 +708,34 @@
           <div>
             <p class="section-label">Selected experiments</p>
             <h2>Playable chaos & case studies</h2>
-            <p>
-              Four survivors of prototype hell: horror Minesweeper, shiny kart,
-              a cube‑infested FPS lab, and a field where the grass wiggles too much.
-              Click a card to see what went horribly right.
-            </p>
           </div>
           <a href="#" class="btn btn-secondary">See everything on itch.io</a>
         </div>
 
         <div class="grid">
+           <!-- Clutch PAtch -->
+          <article class="card col-6" onclick="location.href='clutch-patch.html'">
+            <div class="thumb-frame">
+              <img src="Content/ClutchPatch.png" alt="Clutch Patch cover" />
+            </div>
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Clutch Patch </h3>
+                <div class="card-meta">Game designer · Level design</div>
+              </div>
+              <!-- <div class="card-meta">Onboarding focus</div> -->
+            </div>
+            <p>
+             A game made for L'Oreal Garnier to step into the game world,
+              project made during a semester of Client projects. 
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Level flow</span>
+              <span class="card-tag">Onboarding</span>
+              <span class="card-tag">Playtesting scars</span>
+            </div>
+          </article>
+
           <!-- Monster Mines -->
           <article class="card col-6" onclick="location.href='monster-mines.html'">
             <div class="thumb-frame">
@@ -717,13 +743,13 @@
             </div>
             <div class="card-header">
               <div>
-                <h3 class="card-title">Monster Mines (2026)</h3>
-                <div class="card-meta">Game designer · Unity URP · Game jam</div>
+                <h3 class="card-title">Monster Mines </h3>
+                <div class="card-meta">Game designer · Programmer</div>
               </div>
             </div>
             <p>
-              Minesweeper but everything wants you dead. Short, nasty bunker runs where
-              “this tile is definitely safe” is famous last words.
+              GameJam project based on Minesweeper, but with a twist: 
+              some mines are monsters that kill you if u cannot defer them.
             </p>
             <div class="card-tags">
               <span class="card-tag">Core loop design</span>
@@ -739,14 +765,12 @@
             </div>
             <div class="card-header">
               <div>
-                <h3 class="card-title">Kart (2026)</h3>
-                <div class="card-meta">Modeling · Substance Painter · Unity HDRP</div>
+                <h3 class="card-title">Hotdog Kart </h3>
+                <div class="card-meta">Modeling · Texturing · Animation</div>
               </div>
             </div>
             <p>
-              A racing kart built for class but treated like a boss fight:
-              modeled, textured, lit, and tuned to look good from the worst possible camera angles.
-            </p>
+              A kart made out of a hotdog, created for Modeling assignment, fully handmade from ideation phase until Unity implementation. 
             <div class="card-tags">
               <span class="card-tag">3D modeling</span>
               <span class="card-tag">Stylized PBR</span>
@@ -754,28 +778,7 @@
             </div>
           </article>
 
-          <!-- Clutch PAtch -->
-          <article class="card col-6" onclick="location.href='clutch-patch.html'">
-            <div class="thumb-frame">
-              <img src="Content/ClutchPatch.png" alt="Clutch Patch cover" />
-            </div>
-            <div class="card-header">
-              <div>
-                <h3 class="card-title">Clutch Patch (2025)</h3>
-                <div class="card-meta">Game designer · Level design</div>
-              </div>
-              <!-- <div class="card-meta">Onboarding focus</div> -->
-            </div>
-            <p>
-              A greybox playground where cubes teach you how to play.
-              Zero text walls, just layout, pacing, and “ohhh, that’s what this room is for”.
-            </p>
-            <div class="card-tags">
-              <span class="card-tag">Level flow</span>
-              <span class="card-tag">Onboarding</span>
-              <span class="card-tag">Playtesting scars</span>
-            </div>
-          </article>
+         
 
           <!-- Shader Playground -->
           <article class="card col-6" onclick="location.href='war-never-ends.html'">
@@ -784,14 +787,13 @@
             </div>
             <div class="card-header">
               <div>
-                <h3 class="card-title">War Never Ends (2025)</h3>
-                <div class="card-meta">Technical art · Unity HDRP</div>
+                <h3 class="card-title">War Never Ends </h3>
+                <div class="card-meta">Prototyping · Loop design</div>
               </div>
               <div class="card-meta">Visual feedback</div>
             </div>
             <p>
-              A small field built to bully Shader Graph. Grass, bushes, and trees that wiggle, glow,
-              and somehow still run at decent framerates. Mostly.
+             Game based on a single mechanic that was iterated for several month to hit the perfect loop feeling, with 3 levels of increasing difficulty.
             </p>
             <div class="card-tags">
               <span class="card-tag">Shader Graph</span>
@@ -817,26 +819,33 @@
             My passion is embracing life completely and being my authentic self 
             with everyone, anywhere. 
           </p>
-          <p>
+          <!-- <p>
             Most days I live in Unity (HDRP/URP) and C#, bouncing between design and implementation
             so I can break things fast and fix them slightly slower. I love core loops,
             systems that talk to each other, and giving players decisions that feel risky but fair.
-          </p>
+          </p> -->
 
           <div class="skills-groups" id="skills">
-            <p class="skills-group-title">Chaos powers</p>
+            <p class="skills-group-title">Skills of chaos</p>
             <div class="skills-list">
-              <span>Core loop wizardry</span>
               <span>Weird idea generator</span>
-              <span>Systems tinkering</span>
-              <span>“Is this fun yet?” iterations</span>
+              <span>Prototyping magic</span>
+              <span>Core loop tinkering</span>
+              <span>Iteration of “Is this fun yet?” </span>
             </div>
-            <p class="skills-group-title">Buttons I actually know</p>
+            <p class="skills-group-title">Proficiency in</p>
             <div class="skills-list">
               <span>Unity (HDRP / URP)</span>
               <span>C#</span>
               <span>Substance Painter</span>
-              <span>Photoshop</span>
+              <span>Blender</span>
+            </div>
+            <p class="skills-group-title">Personal qualities</p>
+            <div class="skills-list">
+              <span>Confidence in my abilities</span>
+              <span>Optimism that inspires everyone</span>
+              <span>Stress management</span>
+              <span>Solution-oriented thinking</span>
             </div>
           </div>
         </div>
@@ -860,23 +869,23 @@
 
           <div class="platform-bar">
             <div class="platform-pill">
-              🎨 <a href="https://www.artstation.com/yourhandle"
-                    target="_blank" rel="noopener noreferrer">@yourhandle</a>
+               <a href="mailto:denis4evere@gmail.com"
+                    target="_blank" rel="noopener noreferrer">Email</a>
             </div>
             <div class="platform-pill">
-              💼 <a href="https://www.linkedin.com/in/yourhandle"
+               <a href="https://www.linkedin.com/in/denis-silov-a323112b9"
                     target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
             <div class="platform-pill">
-              🎮 <a href="https://yourname.itch.io"
+               <a href="https://qyspo.itch.io/"
                     target="_blank" rel="noopener noreferrer">itch.io</a>
             </div>
             <div class="platform-pill">
-              💻 <a href="https://github.com/yourhandle"
+               <a href="https://github.com/yourhandle"
                     target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
             <div class="platform-pill">
-              📄 <a href="https://drive.google.com/uc?export=download&id=1EpOQsWBAXpa-mvHwwE9I8Mz8RlK03N2x"
+               <a href="https://drive.google.com/uc?export=download&id=1EpOQsWBAXpa-mvHwwE9I8Mz8RlK03N2x"
                     target="_blank" rel="noopener noreferrer">Download CV</a>
             </div>
           </div>
