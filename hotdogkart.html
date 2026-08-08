@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hot Dog Kart – Denis Silov</title>
+
+  <!-- MAXIMUM CHAOS STYLES (copied from main portfolio) -->
+  <style>
+    :root {
+      --bg: #2a0f26;
+      --surface: #271124;
+      --text: #ffeefc;
+      --muted: #ffd7ff;
+      --primary: #ff4df3;
+      --primary-hover: #8fd6db;
+      --border: #ff9af8;
+      --container: 1100px;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      --pink: #ff4df3;
+      --yellow: #ffe94d;
+      --lime: #9dff6e;
+      --cyan: #5af4ff;
+      --danger: #ff4d6a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 0% 0%, #30142e 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, #494315 0, transparent 55%),
+        radial-gradient(circle at 0% 100%, #165256 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #355825 0, transparent 55%),
+        repeating-linear-gradient(
+          135deg,
+          #140612 0,
+          #140612 16px,
+          #1b0820 16px,
+          #1b0820 32px
+        );
+      background-size: 200% 200%;
+      animation: bg-chaos 120s linear infinite;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes bg-chaos {
+      0% { background-position: 0% 0%; }
+      25% { background-position: 100% 0%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(-3deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-1deg); }
+      75% { transform: rotate(3deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 243, 0.5); }
+      50% { box-shadow: 0 0 40px 6px rgba(255, 233, 77, 0.95); }
+    }
+
+    @keyframes rainbow-text {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes sticker-bob {
+      0%,100% { transform: translateY(0) rotate(-6deg); }
+      50% { transform: translateY(-6px) rotate(-12deg); }
+    }
+
+    @keyframes tag-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Header / nav */
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 3, 18, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px dashed var(--yellow);
+      z-index: 50;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.7rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--yellow);
+      background: radial-gradient(circle at 30% 20%, #ff4df3, #350020);
+      animation: pulse-border 2.2s infinite;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+    .logo:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px 6px rgba(255, 233, 77, 0.95);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(20, 6, 18, 0.6);
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+      border-color: var(--primary);
+      background: rgba(255, 77, 243, 0.2);
+      animation: wiggle 0.35s ease-in-out;
+    }
+
+    /* Sections */
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    section {
+      padding: 3.5rem 0;
+      position: relative;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 0.5rem;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-top: 3rem;
+      background:
+        radial-gradient(circle at top, rgba(255, 233, 77, 0.16), transparent 65%),
+        radial-gradient(circle at bottom, rgba(255, 77, 243, 0.22), transparent 60%);
+    }
+
+    .hero-grid {
+      max-width: 720px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .hero-text {
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+      padding-bottom: 0.2em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, var(--pink), var(--yellow), var(--lime), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbow-text 4.5s linear infinite;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+      max-width: 40rem;
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 145, 0.9);
+      font-style: italic;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-sticker {
+      position: absolute;
+      right: -10px;
+      top: 10px;
+      background: var(--danger);
+      color: #140612;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transform: rotate(-12deg);
+      box-shadow: 0 5px 0 #140612;
+      animation: sticker-bob 2.6s ease-in-out infinite;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #140612;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      transition: 0.15s ease;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 6px 0 #140612;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+      color: #140612;
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 #140612;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--yellow);
+      border: 2px dashed var(--yellow);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      border-style: solid;
+      background: rgba(0,0,0,0.35);
+      color: var(--yellow);
+      transform: translateY(-3px) rotate(-1deg);
+    }
+
+    /* Thumbnail frame for hero media */
+
+    .thumb-frame {
+      position: relative;
+      border-radius: 12px;
+      border: 2px solid #170414;
+      background: #170414;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+      transition: ease 0.2s;
+      cursor: default;
+      aspect-ratio: 16 / 9;
+    }
+
+    .thumb-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .thumb-caption {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Content layout */
+
+    .content {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .content h2 {
+      margin-top: 2rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(20, 6, 18, 0.9);
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0 0 1rem;
+    }
+
+    ul li {
+      margin-bottom: 0.4rem;
+      color: var(--muted);
+    }
+
+    .links-list a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      border-top: 2px dashed var(--yellow);
+      color: var(--muted);
+      padding: 1.2rem 0 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / navigation -->
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <a href="index.html" class="logo">DS</a>
+        <div class="brand-text">
+          <div class="brand-name">Denis Silov</div>
+          <div class="brand-role">Game Designer · Chaos Enthusiast</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#projects">← Back to projects</a>
+        <!-- <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a> -->
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <!-- <div class="hero-sticker">Client project!</div> -->
+          <p class="section-label">Project · Hot Dog Kart</p>
+          <h1 class="hero-title">
+            <span>Hot Dog Kart</span> – a tasty and fast transportation
+          </h1>
+          <p class="hero-subtitle">
+            A kart made for a racing game for course of 3d modeling made with an idea to make something fun and unique.
+          </p>
+          
+
+          <div class="thumb-frame">
+            <!-- plug in your real image when ready -->
+            <video src="Content/HotDogKartVideo2.mp4" autoplay loop muted controls playsinline style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></video>
+          </div>
+          <!-- <p class="thumb-caption">
+            Core arena where players learn the gimmick, make quick decisions, and (hopefully) clutch.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill">Client project</span>
+            <span class="pill">Game & level design</span>
+            <span class="pill">Unity</span>
+            <span class="pill">Semester production</span>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section>
+      <div class="container content">
+        <h2>Overview</h2>
+        <p>
+          HotDog Kart is a model that was created for an arcade-racing game as part of a 3D modeling course.
+            The task was to create a unique and fun vehicle that would stand out in the game rather than a standart kart. 
+            The design of the kart was inspired by the idea of a hot dog, with a playful and whimsical aesthetic.
+        </p>
+                <div class="sketchfab-embed-wrapper" style="margin: 1rem 0 1.5rem;">
+  <iframe
+    title="DAE Hotdog Kart"
+    width="100%"
+    height="480"
+    frameborder="0"
+    allowfullscreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    allow="autoplay; fullscreen; xr-spatial-tracking"
+    xr-spatial-tracking
+    execution-while-out-of-viewport
+    execution-while-not-rendered
+    web-share
+    src="https://sketchfab.com/models/7b365ad8dcab498bb4b430445b338f62/embed?autostart=1&ui_theme=dark">
+  </iframe>
+</div>
+        <h2>My role</h2>
+        <!-- <div class="sketchfab-embed-wrapper"> <iframe title="DAE Hotdog Kart" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7b365ad8dcab498bb4b430445b338f62/embed?autostart=1"> </iframe> </div> -->
+        <p>
+          I designed, modeled, textured and animated the kart, focusing on a strong silhouette, clear materials, and a fun overall shape that would fit an arcade-style racing game.
+        </p>
+       <img src="Content/HotDogKart1.png" alt="Project image">
+        <ul>
+          <li>Developed and designed the core idea of the kart.</li>
+          <li>Fully modeled the kart in Blender and textured in Substance Painter.</li>
+          <li>Perfected presentation with rigging and animation.</li>
+        </ul>
+         <img src="Content/HotDogKart3.png" alt="Final Level Design" >
+
+        
+
+        <h2>Design goals</h2>
+        <ul>
+            <li>Create a vehicle that feels humorous and instantly recognizable.</li>
+            <li>Keep the design readable from a distance with a strong silhouette.</li>
+            <li>Make the model feel suitable for a fun, arcade-style racing game.</li>
+        </ul>
+        <!-- <video src="Content/Iteration 0.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></video> -->
+        <video src="Content/HotDogKartVideo1.mp4" autoplay loop muted controls playsinline style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></video>
+
+
+        <h2>Process & iteration</h2>
+        <p>
+          This kart was created in a few weeks and went through several iterations.
+          The initial idea was a simple hot dog shape with some wheels attached to it and a simple seat,
+          but it lacked the fun and playful aesthetic that I was aiming for. 
+          I then experimented with different shapes and materials, 
+          eventually settling on a more sillly and whimsical design that emphasized 
+          the kart with more realistic engine plus seat and hotdog with pickle wheels 
+          and sauce pipes that go into sauce bottles - exhaust .
+        </p>
+        <img src="Content/HotDogKart2.png" alt="Final Level Design" >
+
+
+        <h2>What I learned</h2>
+        <ul>
+          <li>Combining realism with whimsy can create a unique and memorable design.</li>
+          <li>The simple design choices in the beggining require more time to make them interesting in the end.</li>
+          <li>Focusing on small details doesnt always matter, and sometimes u need to look at bigger picture.</li>
+        </ul>
+        <img src="Content/HotDogKart4.png" alt="Final Level Design" >
+
+        <!-- <h2>Links</h2>
+         <p class="links-list">
+          <a href="#" target="_blank" rel="noopener noreferrer">🕹 Play build (coming soon)</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">▶ Gameplay video (coming soon)</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">📄 Short design notes (coming soon)</a>
+        </p> -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Denis Silov · Clutch Patch · One more round won’t hurt
+  </footer>
+</body>
+</html>
