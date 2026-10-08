@@ -78,7 +78,24 @@
     }
 
     /* ANIMATIONS */
+    @keyframes letter-wave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 
+  25% {
+    transform: translateY(-0.18em) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(0.05em) rotate(1deg);
+  }
+}
     @keyframes bg-chaos {
       0% { background-position: 0% 0%; }
       25% { background-position: 100% 0%; }
@@ -355,12 +372,17 @@
 .hero-title {
   font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
   margin-bottom: 0.5rem;
-  line-height: 1.;          /* add this (or increase) */
-  padding-bottom: 0.2em;     /* extra room for descenders */
+
+  line-height: 1.35;
+  padding-block: 0.18em 0.28em;
+
+  overflow: visible;
 }
 
-    .hero-title span {
-  display: inline-block;
+/* The whole word: keeps its letters together in the title */
+.wave-word {
+  display: inline-flex;
+  white-space: nowrap;
 
   background: linear-gradient(
     90deg,
@@ -371,19 +393,24 @@
     var(--pink)
   );
   background-size: 250% 100%;
-  background-position: 0% 50%;
 
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
-  animation:
-    gradient-bounce 3.2s ease-in-out infinite,
-    rainbow-text 5s linear infinite;
 }
 
-.hero-title span:nth-of-type(2) {
-  animation-delay: 0.45s, 0s;
+/* Each individual letter */
+.wave-word > span {
+  display: inline-block;
+  color: transparent;
+
+  animation:
+    letter-wave 1.35s ease-in-out infinite,
+    rainbow-text 5s linear infinite;
+
+  animation-delay:
+    calc(var(--i) * 0.08s),
+    calc(var(--i) * -0.12s);
 }
 
     .hero-subtitle {
