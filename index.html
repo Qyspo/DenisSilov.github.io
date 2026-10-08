@@ -94,16 +94,62 @@
       75% { transform: rotate(3deg); }
       100% { transform: rotate(0deg); }
     }
+    @keyframes gradient-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    background-position: 0% 50%;
+  }
+
+  35% {
+    transform: translateY(-0.12em) scale(1.05, 0.95);
+  }
+
+  55% {
+    transform: translateY(0.03em) scale(0.97, 1.04);
+    background-position: 100% 50%;
+  }
+
+  75% {
+    transform: translateY(-0.045em) scale(1.02, 0.98);
+  }
+}
 
     @keyframes pulse-border {
       0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 243, 0.5); }
       50% { box-shadow: 0 0 40px 6px rgba(255, 233, 77, 0.95); }
     }
 
-    @keyframes rainbow-text {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
+   @keyframes rainbow-text {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes gradient-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    background-position: 0% 50%;
+  }
+
+  35% {
+    transform: translateY(-0.12em) scale(1.05, 0.95);
+  }
+
+  55% {
+    transform: translateY(0.03em) scale(0.97, 1.04);
+    background-position: 100% 50%;
+  }
+
+  75% {
+    transform: translateY(-0.045em) scale(1.02, 0.98);
+  }
+}
 
     @keyframes floaty {
       0%,100% { transform: translateY(0); }
@@ -313,12 +359,31 @@
   padding-bottom: 0.2em;     /* extra room for descenders */
 }
 
-.hero-title span {
-  background: linear-gradient(90deg, var(--pink), var(--yellow), var(--lime), var(--cyan));
+    .hero-title span {
+  display: inline-block;
+
+  background: linear-gradient(
+    90deg,
+    var(--pink),
+    var(--yellow),
+    var(--lime),
+    var(--cyan),
+    var(--pink)
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: rainbow-text 4.5s linear infinite;
+
+  animation:
+    gradient-bounce 3.2s ease-in-out infinite,
+    rainbow-text 5s linear infinite;
+}
+
+.hero-title span:nth-of-type(2) {
+  animation-delay: 0.45s, 0s;
 }
 
     .hero-subtitle {
@@ -690,7 +755,30 @@
                alt="Picture of Denis Silov" />
           <div class="hero-sticker">Looking for an internship 1st half 2027</div>
           <h1 class="hero-title">
-            I <span>design</span> and <span>prototype</span> silly  games
+                  <h1 class="hero-title">
+        I
+        <span class="wave-word" aria-label="design">
+          <span style="--i: 0">d</span>
+          <span style="--i: 1">e</span>
+          <span style="--i: 2">s</span>
+          <span style="--i: 3">i</span>
+          <span style="--i: 4">g</span>
+          <span style="--i: 5">n</span>
+        </span>
+        and
+        <span class="wave-word" aria-label="prototype">
+          <span style="--i: 0">p</span>
+          <span style="--i: 1">r</span>
+          <span style="--i: 2">o</span>
+          <span style="--i: 3">t</span>
+          <span style="--i: 4">o</span>
+          <span style="--i: 5">t</span>
+          <span style="--i: 6">y</span>
+          <span style="--i: 7">p</span>
+          <span style="--i: 8">e</span>
+        </span>
+        silly games
+      </h1>
           
           </h1>
           <p class="hero-subtitle">
